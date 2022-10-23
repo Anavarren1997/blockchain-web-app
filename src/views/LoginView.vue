@@ -1,7 +1,20 @@
 <template>
-  <h1>Login</h1>
+  <div class="login_view">
+    <LoginForm></LoginForm>
+  </div>
 </template>
 
-<script></script>
+<script>
+import LoginForm from "../components/Navigation/Forms/LoginForm.vue";
+export default {
+  components: { LoginForm },
+};
+</script>
 
-<style scooped></style>
+<style scooped>
+.login_view{
+  display: grid;
+  place-items: center;
+
+}
+</style>
