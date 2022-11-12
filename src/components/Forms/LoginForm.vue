@@ -3,29 +3,53 @@
     <div class="credentials_container">
       <div class="input_container">
         <label for="username">Username</label>
-        <input type="text" id="username" name="username" placeholder="username..." />
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="username..."
+          v-model="username"
+        />
       </div>
 
       <div class="input_container">
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="password..." />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="password..."
+          v-model="password"
+        />
       </div>
     </div>
 
     <div class="buttons_container">
-      <button>Login</button>
+      <button @click="onSubmitLogin">Login</button>
       <button>Cancel</button>
     </div>
   </div>
 </template>
 
-<script setup>
-import { useAuthStore } from "@/stores";
+<script>
+import { useAuthStore } from "../../stores/auth.store";
 
-function onSubmit(){
-    
-}
-
+export default {
+  data() {
+    return {
+      username: "",
+      password: "",
+    };
+  },
+  methods: {
+    onSubmitLogin() {
+      const authStore = useAuthStore();
+      return authStore
+        .login(this.username, this.password)
+        .catch((error) => console.log(error));
+    },
+  },
+};
 </script>
 
 <style scooped>

@@ -4,17 +4,13 @@
   </div>
 </template>
 
-<script>
-import LoginForm from "../components/Navigation/Forms/LoginForm.vue";
-export default {
-  components: { LoginForm },
-};
+<script setup>
+import LoginForm from "../components/Forms/LoginForm.vue";
 </script>
 
 <style scooped>
-.login_view{
+.login_view {
   display: grid;
   place-items: center;
-
 }
 </style>

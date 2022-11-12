@@ -2,33 +2,55 @@
   <nav>
     <div class="left-menu">
       <div class="menu-item">
-        <router-link to="/">API Calls</router-link>
+        <router-link to="/">w3 Calls</router-link>
       </div>
-      <div class="menu-item">
+      <div v-show="authStore.user !== null" class="menu-item">
+        <router-link to="/api">API Calls</router-link>
+      </div>
+      <div v-show="authStore.user !== null" class="menu-item">
         <router-link to="/settings">Settings</router-link>
       </div>
     </div>
     <div class="right-menu">
-      <div class="menu-item">
+      <div v-show="authStore.user === null" class="menu-item">
         <router-link to="/login">Log In</router-link>
+      </div>
+      <div v-show="authStore.user !== null" class="menu-item">
+        <a @click="authStore.logout()" style="cursor: pointer">Logout</a>
+      </div>
+      <div v-show="authStore.user === null" class="menu-item">
+        <a @click="authStore.logout()" style="cursor: pointer">Sign Up</a>
       </div>
     </div>
   </nav>
 </template>
 
-<script></script>
+<script>
+import { useAuthStore } from "../../stores/auth.store";
+
+export default {
+  data() {
+    return {
+      authStore: useAuthStore(),
+    };
+  },
+};
+</script>
 
 <style scoped>
 nav {
   height: 3rem;
+  padding: 0.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid #ddd;
 }
 
-.left-menu {
+.left-menu,
+.right-menu {
   display: flex;
-  column-gap: 1rem;
+  column-gap: 1.5rem;
 }
 
 .menu-item {
@@ -44,6 +66,6 @@ a {
 }
 
 a:hover {
-  color: green;
+  color: #9955af;
 }
 </style>

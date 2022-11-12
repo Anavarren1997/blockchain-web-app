@@ -1,7 +1,11 @@
-<script setup></script>
-
 <template>
-  <h1>Home</h1>
+  <Card></Card>
 </template>
 
-<script></script>
+<script>
+import Card from "../components/EndpointCard/Card.vue";
+
+export default {
+  components: { Card },
+};
+</script>
